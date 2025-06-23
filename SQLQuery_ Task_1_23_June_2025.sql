@@ -1,8 +1,10 @@
 
-
+--Create Database
 
 CREATE DATABASE ECommerceDB;
 USE ECommerceDB;
+
+--Create Table Category
 
 CREATE TABLE Category 
 (
@@ -11,21 +13,27 @@ CREATE TABLE Category
 
 )
 
+----Create Table Product
+	
 CREATE TABLE Product (
     ProductID INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
     Price DECIMAL(10,2),
     CategoryID INT,
     FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
-);
+)
 
+----Create Table Customer
+	
 CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100),
     Email VARCHAR(100),
 	CONSTRAINT UQ_Email UNIQUE (Email)
 
-);
+)
+
+--Create Table Order
 
 CREATE TABLE [ORDER](
     OrderID INT PRIMARY KEY IDENTITY(1,1),
@@ -34,6 +42,8 @@ CREATE TABLE [ORDER](
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 )
 
+----Create Table orderItem
+	
 CREATE TABLE OrderItem (
     OrderID INT,
     ProductID INT,
@@ -43,7 +53,9 @@ CREATE TABLE OrderItem (
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 )
 
-USE ECommerceDB;  -- or your actual database name
+--To access the EcommerceDB
+	
+USE ECommerceDB; 
 GO
 
 SELECT TABLE_NAME
